@@ -1,12 +1,14 @@
 //const express = require ("express");
 import express from "express";
 import dotenv from "dotenv";
-import { sql } from "./config/db";
+import { sql } from "./config/db.js";
+import './config/db.js'
+
 dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT ||  5001  ;  
+const PORT = process.env.PORT ||  5001  ;
 async function initDB(){
     try{
         await sql`CREATE TABLE IF NOT EXISTS transactions(
