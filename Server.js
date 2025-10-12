@@ -6,9 +6,9 @@ dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT ||  5001  ;  
-
+connectDB(process.env.DATABASE_URL)
 app.get("/", (req,res) =>{
-    res.send("it is working");
+    res.send("it is working 123");
 });
 console.log("my port:", process.env.PORT);
 
