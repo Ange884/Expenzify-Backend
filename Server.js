@@ -6,9 +6,10 @@ import { sql } from "./config/db.js";
 dotenv.config();
 
 const app = express();
+//middle ware
 app.use(express.json());
 
-const PORT = process.env.PORT ||  5001  ;
+const PORT = process.env.PORT ||  5002  ;
 async function initDB(){
     try{
         await sql`CREATE TABLE IF NOT EXISTS transactions(
@@ -25,6 +26,18 @@ async function initDB(){
           process.exit(1);
     }
 }
+app.get("/api/transactions/:userId", async(req,res) =>{
+  try{
+    const {userId} = req.params;
+   const  transaction =  await sql `
+    SELECT * FROM transactions WHERE user_id = ${userId} ORDER BY created_at DESC`;
+      res.status(200).json(transaction);
+    // console.log(userId);
+  }catch(error){
+    console.error("Error getting the transactions", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 app.post("/api/transactions", async (req, res) => {
   try {
@@ -50,7 +63,7 @@ app.post("/api/transactions", async (req, res) => {
 
 
 initDB().then(() =>{
-    app.listen(5001,() =>{
-    console.log("server is up and running on PORT:5001")
+    app.listen(5002,() =>{
+    console.log("server is up and running on PORT:5002")
   });
 });
