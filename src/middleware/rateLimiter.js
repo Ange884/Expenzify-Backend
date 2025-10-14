@@ -1,5 +1,5 @@
-import ratelimit from "../config/upstash";
-const ratelimiter = async (requestAnimationFrame,resizeBy,next) =>{
+import ratelimit from "../config/upstash.js";
+const ratelimiter = async (req, res, next) => {
     try{
         const {success} = await ratelimit.limit("my-rate-limit")
 

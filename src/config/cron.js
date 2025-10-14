@@ -1,4 +1,4 @@
-import cron from "cron";
+import cron from "node-cron";
 import https from "https";
 
 const job = new cron.CronJob("*/14 * * * *", function () {
