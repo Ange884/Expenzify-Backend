@@ -1,7 +1,7 @@
 import cron from "node-cron";
 import https from "https";
 
-const job = new cron.CronJob("*/14 * * * *", function () {
+const job = cron.schedule("*/14 * * * *", function () {
   https
     .get(process.env.API_URL, (res) => {
       if (res.statusCode === 200) console.log("GET request sent successfully");
@@ -11,4 +11,3 @@ const job = new cron.CronJob("*/14 * * * *", function () {
 });
 
 export default job;
-

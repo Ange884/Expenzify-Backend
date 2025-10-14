@@ -23,6 +23,7 @@ app.use(express.json());
 //   console.log("Hey we hit a req, the method is", req.method);
 //   next();
 // });
+console.log("This is the database URL",process.env.DATABASE_URL);
 
 const PORT = process.env.PORT || 5001;
 
@@ -33,7 +34,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/transactions", transactionsRoute);
 
 initDB().then(() => {
-  app.listen(PORT, () => {
-    console.log("Server is up and running on PORT:", PORT);
+    app.listen(2100, () => {
+      console.log("Server is up and running on PORT: ", process.env.PORT);
+    });
   });
-});

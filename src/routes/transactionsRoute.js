@@ -5,6 +5,7 @@ import {
   getSummaryByUserId,
   getTransactionsByUserId,
 } from "../controllers/transactionsController.js";
+import "../controllers/transactionsController.js";
 
 const router = express.Router();
 
